@@ -1,0 +1,80 @@
+<app-heading></app-heading>
+<div class="container">
+  <div class="row separator">
+    <div class="col-lg-8 offset-lg-2">
+      <div class="table-responsive" *ngFor="let offer of offer">
+        <table class="table table-hover">
+          <tr>
+            <th class='head' colspan="2">Podaci o času: </th>
+          </tr>
+          <tr>
+            <th>Naslov</th>
+            <td>{{ offer.offer_title }}</td>
+          </tr>
+          <tr>
+            <th>Opis</th>
+            <td>{{ offer.description }}</td>
+          </tr>
+          <tr>
+            <th>Fakultet</th>
+            <td>{{ offer.faculty_name }}</td>
+          </tr>
+          <tr>
+            <th>Smer</th>
+            <td>{{ offer.course_title }}</td>
+          </tr>
+          <tr>
+            <th>Predmet</th>
+            <td>{{ offer.subject_title }}</td>
+          </tr>
+          <tr>
+            <th>Broj časova</th>
+            <td>{{ offer.number_of_sessions }}</td>
+          </tr>
+          <tr>
+            <th>Cena po času</th>
+            <td>{{ offer.price }}</td>
+          </tr>
+          <tr>
+            <th>Rad kod učenika </th>
+            <td>{{ offer.user_place ? 'Da' : 'Ne' }}</td>
+          </tr>
+          <tr>
+            <th>Rad kod profesora</th>
+            <td>{{ offer.professor_place ? 'Da' : 'Ne' }}</td>
+          </tr>
+          <tr class="thead">
+            <th class='head' colspan="2">Podaci o profesoru: </th>
+          </tr>
+          <tr>
+            <th>Ime</th>
+            <td>{{ offer.first_name }}</td>
+          </tr>
+          <tr>
+            <th>Prezime</th>
+            <td>{{ offer.last_name }}</td>
+          </tr>
+          <tr>
+            <th>Email</th>
+            <td>{{ offer.email }}</td>
+          </tr>
+          <tr>
+            <th>Telefon</th>
+            <td>{{ offer.mobile_phone }}</td>
+          </tr>
+          <tr>
+            <th>Adresa</th>
+            <td>{{ offer.address }}</td>
+          </tr>
+          <tr>
+            <th>Facebook</th>
+            <td>{{ offer.facebook }}</td>
+          </tr>
+        </table>
+      </div>
+
+      <img src="{{ googleMap }}" alt="google map">
+
+    </div>
+  </div>
+</div>

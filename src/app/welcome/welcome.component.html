@@ -1,0 +1,63 @@
+<app-heading></app-heading>
+<div class="background">
+  <div class="container">
+    <div class="row">
+      <div class="offset-lg-1 col-lg-8">
+        <div class="card">
+          <div class="card-block">
+            <form [formGroup]="searchForm" novalidate>
+              <div class="row">
+                <div class="col-lg-10">
+                  <div class="row">
+                    <div class="form-group col-lg-6">
+                      <label for="">Grad</label>
+                      <select class="form-control" formControlName="city_id" (change)="onCityChange($event.target.value)">
+                        <option *ngFor="let city of cities" [value]="city.id">{{city.name}}</option>
+                      </select>
+                      <div *ngIf="!searchForm.get('city_id').valid && formSubmitted" class="alert alert-danger error-separate-top">
+                        Izaberite grad
+                      </div>
+                    </div>
+                    <div class="form-group col-lg-6">
+                      <label for="">Fakultet</label>
+                      <select class="form-control" formControlName="faculty_id" (change)="onFacultyChange($event.target.value)">
+                        <option *ngFor="let faculty of faculties" [value]="faculty.id">{{faculty.name}}</option>
+                      </select>
+                      <div *ngIf="!searchForm.get('faculty_id').valid && formSubmitted" class="alert alert-danger error-separate-top">
+                        Izaberite fakultet
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col-lg-6">
+                      <label for="">Smer</label>
+                      <select class="form-control" formControlName="course_id" (change)="onCourseChange($event.target.value)">
+                        <option *ngFor="let course of courses" [value]="course.id">{{course.title}}</option>
+                      </select>
+                      <div *ngIf="!searchForm.get('course_id').valid && formSubmitted" class="alert alert-danger error-separate-top">
+                        Izaberite fakultet
+                      </div>
+                    </div>
+
+                    <div class="form-group col-lg-6">
+                      <label for="">Predmet</label>
+                      <select class="form-control" formControlName="subject_id">
+                        <option *ngFor="let subject of subjects" [value]="subject.id">{{subject.title}}</option>
+                      </select>
+                      <div *ngIf="!searchForm.get('subject_id').valid && formSubmitted" class="alert alert-danger error-separate-top">
+                        Izaberite fakultet
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-2">
+                  <a class="btn btn-primary blue" routerLink="/offers/{{searchForm.get('city_id').value}}/{{searchForm.get('faculty_id').value}}/{{searchForm.get('course_id').value}}/{{searchForm.get('subject_id').value}}">Traži</a>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

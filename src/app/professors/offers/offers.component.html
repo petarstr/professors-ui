@@ -1,0 +1,66 @@
+<app-heading></app-heading>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 offset-lg-3 offer">
+      <form class="" [formGroup]="offerForm" (ngSubmit)="onSubmit()" novalidate>
+
+        <div class="form-group">
+          <label for="">Naziv</label>
+          <input type="text" class="form-control" formControlName="title">
+        </div>
+
+        <div class="form-group">
+          <label for="">Opis</label>
+          <input type="text" class="form-control" formControlName="description">
+        </div>
+
+        <!-- Za sad obradjujemo samo jedan predmet po offer-u -->
+
+        <div class="form-group">
+          <label for="">Fakultet</label>
+          <select class="form-control" formControlName="faculty_id" (change)="onFacultyChange($event.target.value)">
+            <option *ngFor="let faculty of faculties" [value]="faculty.id">{{faculty.name}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="">Smer</label>
+          <select class="form-control" formControlName="course_id" (change)="onCourseChange($event.target.value)">
+            <option *ngFor="let course of courses" [value]="course.id">{{course.title}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="">Predmet: </label>
+          <select class="form-control" formControlName="subject">
+            <option *ngFor="let subject of subjects" [value]="subject.id">{{ subject.title }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="">Broj Casova</label>
+          <input type="number" class="form-control" formControlName="number_of_sessions">
+        </div>
+
+        <div class="form-group radio">
+          <h4>Dolazak kod  ucenika: </h4>
+          <label class="center-block"><input type="radio" formControlName="user_place" value="true">Da</label>
+          <label class="center-block"><input type="radio" formControlName="user_place" value="false">Ne</label>
+        </div>
+
+        <div class="form-group radio">
+          <h4>Dolazak kod  profesora: </h4>
+          <label class="center-block"><input type="radio" formControlName="professor_place" value="true">Da</label>
+          <label class="center-block"><input type="radio" formControlName="professor_place" value="false">Ne</label>
+        </div>
+
+        <!-- Za sad obradjujemo samo cenu za jednog studenta-->
+        <div class="form-group">
+          <label for="">Cena</label>
+          <input type="text" class="form-control" formControlName="price">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Kreiraj Ponudu</button>
+
+      </form>
+    </div>
+  </div>
+</div>

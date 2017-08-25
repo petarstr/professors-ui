@@ -1,0 +1,36 @@
+<app-heading></app-heading>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-10 offset-lg-1">
+      <ul class="list-group list-group-flush">
+          <a class="list-separator" *ngFor="let result of searchResults" routerLink="/offer/{{result.offer_id}}">
+            <div class="card">
+              <div class="card-header">
+                <div class="clearfix">
+                  <div class="float-left">
+                    {{result.first_name + ' ' + result.last_name}}
+                  </div>
+                  <div class="float-right">
+                    <div class="info">
+                      Broj casova: {{result.number_of_sessions}}
+                    </div>
+                    <div class="info">
+                    Po ceni od: {{result.price}} RSD
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-block">
+                <h6 class="card-title">
+                  {{result.offer_title}}
+                </h6>
+                <div class="card-text">
+                   {{ result.description }}
+                </div>
+              </div>
+            </div>
+          </a>
+      </ul>
+    </div>
+  </div>
+</div>

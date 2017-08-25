@@ -1,0 +1,14 @@
+.list-separator{
+  margin-top: 20px;
+}
+
+a {
+  transition: all .2s ease-in-out;
+}
+a:hover {
+ transform: scale(1.05);
+}
+
+.btn {
+  cursor: pointer;
+}

@@ -1,0 +1,61 @@
+<app-heading></app-heading>
+<div class="container">
+  <div class="row separate-top">
+    <div class="col-lg-3">
+      <img src="https://www.safeocs.gov/cos/resources/app/images/av1_1.png" class="rounded" width="200" height="200" alt="user-image">
+    </div>
+    <div class="col-lg-6">
+      <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" novalidate>
+        <div class="form-group">
+          <label for="">Ime</label>
+          <input type="text" class="form-control" formControlName="name" [(ngModel)]="professor.firstName">
+          <div *ngIf="!profileForm.get('name').valid && formSubmitted" class="alert alert-danger error-separate-top">
+            Unesite ime
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="">Prezime</label>
+          <input type="text" class="form-control" name="" value="" formControlName="lastname" [(ngModel)]="professor.lastName">
+          <div *ngIf="!profileForm.get('lastname').valid && formSubmitted" class="alert alert-danger error-separate-top">
+            Unesite prezime
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="">Email</label>
+          <input type="email" class="form-control" name="" value="" formControlName="email" [(ngModel)]="professor.email">
+          <div *ngIf="!profileForm.get('email').valid && formSubmitted" class="alert alert-danger error-separate-top">
+            Unesite email
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="">Mobilni telefon</label>
+          <input type="text" class="form-control" name="" value="" formControlName="phone" [(ngModel)]="professor.phone">
+          <div *ngIf="!profileForm.get('phone').valid && formSubmitted" class="alert alert-danger error-separate-top">
+            Unesite telefon
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="">Facebook profil</label>
+          <input type="text" class="form-control" name="" value="" formControlName="facebook" [(ngModel)]="professor.facebook">
+        </div>
+        <div class="form-group">
+          <label for="">Adresa</label>
+          <input type="text" class="form-control" name="" value="" formControlName="address" [(ngModel)]="professor.address">
+        </div>
+        <div class="form-group">
+          <label for="">Grad</label>
+          <select class="form-control" formControlName="city" [(ngModel)]="professor.city">
+            <option *ngFor="let city of cities" [value]=city.id [attr.selected]="city.id == professor.city ? '' : null">{{city.name}}</option>
+          </select>
+          <div *ngIf="!profileForm.get('city').valid && formSubmitted" class="alert alert-danger error-separate-top">
+            Izaberite grad
+          </div>
+        </div>
+        <button type="submit" class="btn btn-send">Sacuvaj</button>
+        <div class="alert alert-success float-right" *ngIf="updated === true">
+            Profil Izmenjen
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

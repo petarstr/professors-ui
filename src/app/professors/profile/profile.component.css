@@ -1,0 +1,22 @@
+.separate-top {
+  margin-top: 50px;
+}
+
+.error-separate-top {
+  margin-top: 5px;
+}
+
+.btn-ponuda {
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.btn-send{
+  background-color: #6C7A89;
+  color: white;
+}
+
+.alert {
+  margin-top: 10px;
+  width: 100%;
+}

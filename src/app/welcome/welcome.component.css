@@ -1,0 +1,23 @@
+.background {
+    background-image: url("../../assets/bc.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+.btn-uc{
+  margin-right: 10px;
+  width: 120px;
+}
+
+.blue {
+  background-color: #6C7A89;
+  margin-top: 70px;
+  border: 1px solid white;
+  width: 100%;
+}
+
+.card {
+  margin-top: 330px;
+  background: rgba(236,236,236, 0.8)
+}

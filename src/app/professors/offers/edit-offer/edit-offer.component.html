@@ -1,0 +1,44 @@
+<app-heading></app-heading>
+<div class="container">
+  <div class="row separator">
+    <div class="col-lg-6 offset-lg-3 offer">
+      <form class="" [formGroup]="offerForm" (ngSubmit)="onSubmit()" novalidate>
+
+        <div class="form-group">
+          <label for="">Naziv</label>
+          <input type="text" class="form-control" formControlName="title" [(ngModel)]="offer.title">
+        </div>
+
+        <div class="form-group">
+          <label for="">Opis</label>
+          <input type="text" class="form-control" formControlName="description" [(ngModel)]="offer.description">
+        </div>
+
+        <div class="form-group">
+          <label for="">Broj Casova</label>
+          <input type="number" class="form-control" formControlName="number_of_sessions" [(ngModel)]="offer.number_of_sessions">
+        </div>
+
+        <div class="form-group radio">
+          <div class='radio-btn'>Dolazak kod  ucenika: </div>
+          <label class="center-block"><input type="radio" formControlName="user_place" value="true" [checked]="offer.user_place ? true : false">Da</label>
+          <label class="center-block"><input type="radio" formControlName="user_place" value="false" [checked]="offer.user_place ? false : true">Ne</label>
+        </div>
+
+        <div class="form-group radio">
+          <div class='radio-btn' for="">Dolazak kod  profesora:</div>
+          <label class="center-block"><input type="radio" formControlName="professor_place" value="true" [checked]="offer.professor_place ? true : false">Da</label>
+          <label class="center-block"><input type="radio" formControlName="professor_place" value="false" [checked]="offer.professor_place ? false : true">Ne</label>
+        </div>
+
+        <!-- Za sad obradjujemo samo cenu za jednog studenta-->
+        <div class="form-group">
+          <label for="">Cena</label>
+          <input type="text" class="form-control" formControlName="price" [(ngModel)]="offer.price">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Izmeni Ponudu</button>
+      </form>
+    </div>
+  </div>
+</div>

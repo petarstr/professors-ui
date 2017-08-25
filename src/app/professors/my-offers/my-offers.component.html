@@ -1,0 +1,33 @@
+<app-heading></app-heading>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-10 offset-lg-1">
+      <ul class="list-group list-group-flush">
+          <a class="list-separator" *ngFor="let offer of offers">
+            <div class="card">
+              <div class="card-header">
+                <div class="clearfix">
+                  <div class="float-left">
+                    {{ offer.offer_title }}
+                  </div>
+                  <div class="float-right">
+                    <a class="btn btn-primary btn-sm" routerLink="/my-offer/{{offer.offer_id}}">Pregledaj</a>
+                    <a class="btn btn-info btn-sm" routerLink="/offer/edit/{{offer.offer_id}}">Izmeni</a>
+                    <a class="btn btn-danger btn-sm" (click)="onDelete(offer.offer_id)">Obrisi</a>
+                  </div>
+                </div>
+              </div>
+              <div class="card-block">
+                <h6 class="card-title">
+                  {{ offer.subject_title}}
+                </h6>
+                <div class="card-text">
+                {{ offer.description }}
+                </div>
+              </div>
+            </div>
+          </a>
+      </ul>
+    </div>
+  </div>
+</div>
