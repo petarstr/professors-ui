@@ -56,7 +56,7 @@ export class OffersComponent implements OnInit {
   }
 
   createOffer(){
-    this.http.post('http://localhost:3000/professors/' + this.id + '/offers', JSON.stringify(this.offerForm.value)).subscribe(
+    this.tokenService.post('http://localhost:3000/professors/' + this.id + '/offers', JSON.stringify(this.offerForm.value)).subscribe(
       (response) => {
       this.router.navigateByUrl('/professor/offers')
       },

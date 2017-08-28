@@ -20,6 +20,7 @@ export class AppComponent {
       validateTokenPath: 'validate_token',
       signInPath: 'sign_in',
       registerAccountPath: ''
+
     });
   }
 }

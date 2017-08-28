@@ -22,6 +22,9 @@ export class ProfileComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private http: Http, private tokenService: Angular2TokenService, private dataHelpersService: DataHelpersService) {
     this.createForm();
+    console.log(localStorage.getItem('accessToken'));
+    console.log(localStorage.getItem('client'));
+    console.log(localStorage.getItem('expiry'));
     this.initializeProfessor();
     this.setCities();
     this.tokenService.validateToken().subscribe(
@@ -55,7 +58,7 @@ export class ProfileComponent implements OnInit {
   }
 
   updateProfile(){
-    this.http.put('http://localhost:3000/professors/' + this.id, JSON.stringify(this.profileForm.value)).subscribe(
+    this.tokenService.put('http://localhost:3000/professors/' + this.id, JSON.stringify(this.profileForm.value)).subscribe(
       (response) => {
         console.log(response)
         this.updated = true;
@@ -66,7 +69,7 @@ export class ProfileComponent implements OnInit {
   }
 
   getCurrentProfileData(){
-    this.http.get('http://localhost:3000/professors/' + this.id + '/edit').subscribe(
+    this.tokenService.get('http://localhost:3000/professors/' + this.id + '/edit').subscribe(
       (response) => {
 
         this.professor.firstName = response.json().first_name;

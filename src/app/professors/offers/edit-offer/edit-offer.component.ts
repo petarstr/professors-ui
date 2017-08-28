@@ -64,7 +64,7 @@ export class EditOfferComponent implements OnInit {
   }
 
   editOffer(){
-    this.http.put('http://localhost:3000/professors/' + this.id + '/offers/' + this.offer_id, JSON.stringify(this.offerForm.value)).subscribe(
+    this.tokenService.put('http://localhost:3000/professors/' + this.id + '/offers/' + this.offer_id, JSON.stringify(this.offerForm.value)).subscribe(
       (response) => this.router.navigateByUrl('/offer/' + this.offer_id),
       (error) => console.log(error)
     )
