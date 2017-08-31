@@ -17,7 +17,7 @@ export class WelcomeComponent implements OnInit {
   courses: object[];
   subjects: object[];
   searchResults: object[];
-
+  formSubmitted = false;
 
 
   constructor(private helperService: DataHelpersService, private searchResultsService: SearchResultsService, private router: Router, private fb: FormBuilder) {
