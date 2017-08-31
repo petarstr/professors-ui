@@ -2,9 +2,15 @@
 const express  = require('express');
 const path = require('path');
 const proxy = require('express-http-proxy');
+// const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const app = express();
+
+
+// Parsers for POST data
+// app.use(bodyParser.json({limit: '5mb'}));
+// app.use(bodyParser.urlencoded({ extended: false, limit: '5mb' }));
 
 
 // Run the app by serving the static files
