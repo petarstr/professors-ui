@@ -12,11 +12,11 @@ export class SearchResultsService {
   constructor(private http: Http, private router: Router, private tokenService: Angular2TokenService) {}
 
   getSearchOffer(city_id: string, faculty_id: string, course_id: string, subject_id: string){
-    return this.tokenService.get('http://localhost:3000/offers/' + city_id + '/' + faculty_id + '/' + course_id + '/' + subject_id);
+    return this.tokenService.get('offers/' + city_id + '/' + faculty_id + '/' + course_id + '/' + subject_id);
   }
 
   showOffer(offer_id: string){
-    return this.tokenService.get('http://localhost:3000/offer/' + offer_id);
+    return this.tokenService.get('offer/' + offer_id);
   }
 
 }

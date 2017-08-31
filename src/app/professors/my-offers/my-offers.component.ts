@@ -24,14 +24,14 @@ export class MyOffersComponent implements OnInit {
   }
 
   getOffers(){
-    this.tokenService.get('http://localhost:3000/professors/' + this.id + '/offers').subscribe(
+    this.tokenService.get('professors/' + this.id + '/offers').subscribe(
       (response) => this.offers = response.json(),
       (error) => console.log(error)
     )
   }
 
   onDelete(offer_id: number){
-    this.tokenService.delete('http://localhost:3000/professors/' + this.id + '/offers/' + offer_id).subscribe(
+    this.tokenService.delete('professors/' + this.id + '/offers/' + offer_id).subscribe(
       (response) => this.getOffers(),
       (error) => console.log(error)
     );

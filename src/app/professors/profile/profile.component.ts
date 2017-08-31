@@ -31,7 +31,8 @@ export class ProfileComponent implements OnInit {
       (response) => {
         this.id = this.tokenService.currentUserData.id;
         this.getCurrentProfileData();
-      }
+      },
+      (error) => console.log(error)
     )
   }
 
@@ -58,7 +59,7 @@ export class ProfileComponent implements OnInit {
   }
 
   updateProfile(){
-    this.tokenService.put('http://localhost:3000/professors/' + this.id, JSON.stringify(this.profileForm.value)).subscribe(
+    this.tokenService.put('professors/' + this.id, JSON.stringify(this.profileForm.value)).subscribe(
       (response) => {
         console.log(response)
         this.updated = true;
@@ -69,9 +70,8 @@ export class ProfileComponent implements OnInit {
   }
 
   getCurrentProfileData(){
-    this.tokenService.get('http://localhost:3000/professors/' + this.id + '/edit').subscribe(
+    this.tokenService.get('professors/' + this.id + '/edit').subscribe(
       (response) => {
-
         this.professor.firstName = response.json().first_name;
         this.professor.lastName = response.json().last_name;
         this.professor.email = response.json().email;
@@ -99,11 +99,5 @@ export class ProfileComponent implements OnInit {
       }
     );
   }
-
-  getCurrent(){
-    this.http.get('http://localhost:3000/current').subscribe(
-      (response) => console.log(response),
-      (error) => console.log(error)
-    )}
 
 }
