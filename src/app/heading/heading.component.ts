@@ -11,10 +11,14 @@ import { Router } from '@angular/router';
 export class HeadingComponent implements OnInit {
   signedIn: boolean;
   userType: string;
+  currentRouteWelcome = false;
 
   constructor(private authService: UserSignUpService, private tokenService: Angular2TokenService, private router: Router) { }
 
   ngOnInit() {
+    if (this.router.url === '/welcome') {
+      this.currentRouteWelcome = true;
+    }
     this.signedIn = this.authService.signedIn();
     this.userType = this.tokenService.currentUserType;
   }

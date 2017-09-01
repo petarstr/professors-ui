@@ -28,16 +28,21 @@
           <button (click)="signOut()" class="btn btn-header">Odjava</button>
         </div>
 
-        <div *ngIf="signedIn && userType == 'PROFESSOR'"  class="dropdown float-right">
-          <button class="btn btn-header dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Nalog
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item"routerLink="/professor/offer">Kreiraj Ponudu</a>
-            <a class="dropdown-item"routerLink="/professor/offers">Moje Ponude</a>
-            <a class="dropdown-item" routerLink="/profile">Profil</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" (click)="signOut()" >Odjava</a>
+        <div *ngIf="signedIn && userType == 'PROFESSOR'" class="">
+          <div class="dropdown float-right">
+            <button class="btn btn-header dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Nalog
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item"routerLink="/professor/offer">Kreiraj Ponudu</a>
+              <a class="dropdown-item"routerLink="/professor/offers">Moje Ponude</a>
+              <a class="dropdown-item" routerLink="/profile">Profil</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" (click)="signOut()" >Odjava</a>
+            </div>
+          </div>
+          <div *ngIf="!currentRouteWelcome" class="">
+            <a class="btn btn-header float-right" routerLink="/welcome">Početna</a>
           </div>
         </div>
       </div>
