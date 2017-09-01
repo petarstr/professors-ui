@@ -1,45 +1,46 @@
 <nav class="header">
-  <div class="offset-lg-7 col-lg-4 clearfix">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 clearfix">
 
-    <div *ngIf="!signedIn" class="not-logged-in">
-      <div class="dropdown float-right">
-        <button class="btn btn-header dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Profesor
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" routerLink="/professor/login" href="#">Prijava</a>
-          <a class="dropdown-item" routerLink="/professor/register">Registracija</a>
+        <div *ngIf="!signedIn" class="not-logged-in">
+          <div class="dropdown float-right">
+            <button class="btn btn-header dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Profesor
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" routerLink="/professor/login" href="#">Prijava</a>
+              <a class="dropdown-item" routerLink="/professor/register">Registracija</a>
+            </div>
+          </div>
+          <div class="dropdown float-right">
+            <button class="btn btn-header dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Učenik
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" routerLink="/user/login">Prijava</a>
+              <a class="dropdown-item" routerLink="/user/register">Registracija</a>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="signedIn && userType == 'USER'" class="float-right">
+          <button (click)="signOut()" class="btn btn-header">Odjava</button>
+        </div>
+
+        <div *ngIf="signedIn && userType == 'PROFESSOR'"  class="dropdown float-right">
+          <button class="btn btn-header dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Nalog
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item"routerLink="/professor/offer">Kreiraj Ponudu</a>
+            <a class="dropdown-item"routerLink="/professor/offers">Moje Ponude</a>
+            <a class="dropdown-item" routerLink="/profile">Profil</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" (click)="signOut()" >Odjava</a>
+          </div>
         </div>
       </div>
-
-      <div class="dropdown float-right">
-        <button class="btn btn-header dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Učenik
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" routerLink="/user/login">Prijava</a>
-          <a class="dropdown-item" routerLink="/user/register">Registracija</a>
-        </div>
-      </div>
     </div>
-
-    <div *ngIf="signedIn && userType == 'USER'" class="offset-lg-10">
-      <button (click)="signOut()" class="btn btn-header">Odjava</button>
-    </div>
-
-    <div *ngIf="signedIn && userType == 'PROFESSOR'"  class="dropdown float-right">
-      <button class="btn btn-header dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Nalog
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item"routerLink="/professor/offer">Kreiraj Ponudu</a>
-        <a class="dropdown-item"routerLink="/professor/offers">Moje Ponude</a>
-        <a class="dropdown-item" routerLink="/profile">Profil</a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" (click)="signOut()" >Odjava</a>
-      </div>
-    </div>
-
-
   </div>
 </nav>
