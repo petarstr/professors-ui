@@ -12,8 +12,8 @@ export class AppComponent {
   constructor(private _tokenService: Angular2TokenService) {
     this._tokenService.init({
 
-      apiPath: 'https://secret-plains-11957.herokuapp.com',
-
+      //apiPath: 'https://secret-plains-11957.herokuapp.com',
+      apiPath: 'http://localhost:3000',
       userTypes: [
         { name: 'PROFESSOR', path: 'professors' },
         { name: 'USER', path: 'users' }
