@@ -1,1 +1,27 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  min-height: 100%;
+}
+
+.flex {
+  display: flex;
+}
+
+.vertical-align {
+  align-items: center;
+}
+
+.horizontal-align {
+  justify-content: center;
+}
+
+.pull-right {
+  justify-content: flex-end;
+}

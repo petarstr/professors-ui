@@ -1,18 +1,51 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import { AppRoutingModule } from './app-routing.module';
+
+
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { Angular2TokenService } from 'angular2-token';
 
 
 import { AppComponent } from './app.component';
-
+import { UserLoginComponent } from './login/user-login/user-login.component';
+import { UserRegistrationComponent } from './register/user-registration/user-registration.component';
+import { ProfessorRegistrationComponent } from './register/professor-registration/professor-registration.component';
+import { ProfileComponent } from './professors/profile/profile.component';
+import { ProfessorLoginComponent } from './login/professor-login/professor-login.component';
+import { CreateOfferComponent } from './professors/create-offer/create-offer.component';
+import { SearchComponent } from './search/search.component';
+import { ProfLoginComponent } from './professors/prof-login/prof-login.component';
+import { AdminComponent } from './professors/admin/admin.component';
+import { FileUploadService } from './services/file-upload.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    UserLoginComponent,
+    UserRegistrationComponent,
+    ProfessorRegistrationComponent,
+    ProfileComponent,
+    ProfessorLoginComponent,
+    CreateOfferComponent,
+    SearchComponent,
+    ProfLoginComponent,
+    AdminComponent
   ],
   imports: [
-    BrowserModule
+    AppRoutingModule,
+    BrowserModule,
+    HttpModule,
+    ReactiveFormsModule,
+    FormsModule,
+    NgSelectModule,
+    NgbModule.forRoot()
   ],
-  providers: [],
+  providers: [Angular2TokenService, FileUploadService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

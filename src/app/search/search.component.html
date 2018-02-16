@@ -1,0 +1,47 @@
+<div class="background">
+  <div class="roles flex pull-right">
+    <a class="student-space-right btn btn-primary" name="button">Student</a>
+    <a class="prof-space-right btn btn-primary" name="button" routerLink="professors/login">Profesor</a>
+  </div>
+  <div class="flex container">
+    <div class="block">
+      <ng-select
+        [items]="cities"
+        [addTag]="true"
+        bindLabel="name"
+        placeholder="Izaberi grad"
+        [(ngModel)]="selectedCity"
+        (add)="getFaculties()"
+        (clear)="clearAll()">
+      </ng-select>
+      <ng-select
+        [items]="courses"
+        [addTag]="true"
+        bindLabel="title"
+        placeholder="Izaberi smer"
+        [(ngModel)]="selectedCourse"
+        (add)="getSubjects()"
+        (clear)="clearSubjects()">
+      </ng-select>
+    </div>
+    <div class="block">
+      <ng-select
+        [items]="faculties"
+        [addTag]="true"
+        bindLabel="name"
+        placeholder="Izaberi fakultet"
+        [(ngModel)]="selectedFaculty"
+        (add)="getCourses()"
+        (clear)="clearCoursesSubjects()">
+      </ng-select>
+      <ng-select
+        [items]="subjects"
+        [addTag]="true"
+        bindLabel="title"
+        placeholder="Izaberi predmet"
+        [(ngModel)]="selectedSubject"
+        (add)="search()">
+      </ng-select>
+    </div>
+  </div>
+</div>
