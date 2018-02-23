@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Angular2TokenService } from 'angular2-token';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-create-offer',
-  templateUrl: './create-offer.component.html',
-  styleUrls: ['./create-offer.component.css']
+  selector: 'app-edit-offer',
+  templateUrl: './edit-offer.component.html',
+  styleUrls: ['./edit-offer.component.css']
 })
-export class CreateOfferComponent implements OnInit {
+export class EditOfferComponent implements OnInit {
   currentUser: any;
   professorCityId: number;
   offerForm: FormGroup;
@@ -24,19 +25,57 @@ export class CreateOfferComponent implements OnInit {
   newSubject: any;
   newFaculty: any;
   newCourse: any;
-
-  constructor(private fb: FormBuilder, private modalService: NgbModal, private _tokenService: Angular2TokenService) {
+  offerId: number;
+  private sub: any;
+  offer: any;
+  loaded = false;
+  constructor(private fb: FormBuilder, private modalService: NgbModal, private _tokenService: Angular2TokenService, private route: ActivatedRoute) {
     this.createForm();
   }
 
   ngOnInit() {
+    this.sub = this.route.params.subscribe(params => {
+       this.offerId = +params['offerId']; // (+) converts string 'id' to a number
+    });
     this._tokenService.validateToken().subscribe(
       (res) => {
         this.currentUser = this._tokenService.currentUserData
         this.professorCityId = this.currentUser.city_id;
+        this.getOffer();
         this.getFaculties(this.professorCityId);
       }
     )
+  }
+
+  getOffer(){
+    this._tokenService.get('professor/offers/' + this.offerId).subscribe(
+      (res) => {
+        this.setFormData(res.json());
+      },
+      (err) => {
+        console.log(err)
+      }
+    )
+  }
+
+  setFormData(data){
+    this.offerForm.patchValue({
+      professor_id: this.currentUser.id,
+      title: data.title,
+      description: data.description,
+      number_of_sessions: data.number_of_sessions,
+      user_place: data.user_place,
+      professor_place: data.professor_place
+    });
+    this.setPrices(data);
+    this.offerForm.setControl('subjects', this.fb.array(data.subjects));
+  }
+
+  setPrices(data){
+    let prices = data.prices;
+    const pricesFGs = prices.map(price => this.fb.group(price));
+    const pricesFormArray = this.fb.array(pricesFGs);
+    this.offerForm.setControl('prices', pricesFormArray);
   }
 
   getFaculties(city_id){
@@ -73,17 +112,17 @@ export class CreateOfferComponent implements OnInit {
       title: '',
       description: '',
       number_of_sessions: '',
-      user_place: false,
-      professor_place: true,
-      prices: this.fb.array([ this.createPrice() ]),
+      user_place: '',
+      professor_place: '',
+      prices: this.fb.array([this.createPrice()]),
       subjects: this.fb.array([])
     });
   }
 
   createPrice(): FormGroup {
     return this.fb.group({
-      student_count: '',
-      price: ''
+      student_count: 0,
+      price: 0
     })
   }
 
@@ -108,12 +147,16 @@ export class CreateOfferComponent implements OnInit {
     let subjects = this.offerForm.get('subjects') as FormArray;
     subjects.push(
       this.fb.group({
-        subject_id: this.newSubject.id,
+        id: this.newSubject.id,
         title: this.newSubject.title,
-        faculty_id: this.newFaculty.id,
-        faculty_title: this.newFaculty.name,
-        course_id: this.newCourse.id,
-        course_title: this.newCourse.title
+        course: {
+          id: this.newCourse.id,
+          title: this.newCourse.title,
+          faculty: {
+            id: this.newFaculty.id,
+            name: this.newFaculty.name
+          }
+        }
       })
     );
     this.modalReference.close('Click');
@@ -134,7 +177,7 @@ export class CreateOfferComponent implements OnInit {
  }
 
  submitOffer(){
-   this._tokenService.post('professor/offers', this.offerForm.value).subscribe(
+   this._tokenService.put('professors/' + this.currentUser.id + '/offers/' + this.offerId, this.offerForm.value).subscribe(
      (res) => {
        console.log('uspeh')
      },

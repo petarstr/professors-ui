@@ -45,8 +45,8 @@
               <div class="card">
                 <div class="card-block">
                   <h4 class="card-title">{{subject.title}}</h4>
-                  <h6 class="card-subtitle mb-2 text-muted">{{subject.faculty_title}}</h6>
-                  <h6 class="card-subtitle mb-2 text-muted">{{subject.course_title}}</h6>
+                  <h6 class="card-subtitle mb-2 text-muted">{{subject.course.faculty.name}}</h6>
+                  <h6 class="card-subtitle mb-2 text-muted">{{subject.course.title}}</h6>
                   <!-- <p class="card-text">{{subject.course_title}}</p> -->
 
                 </div>
@@ -76,18 +76,15 @@
           <input type="number" class="form-control" min="1" formControlName="number_of_sessions">
         </div>
 
-        <div class="form-group">
-          <label class="checkbox-inline">
-              Dolazak kod  ucenika
-              <input type="checkbox" name="" formControlName="user_place">
-          </label>
-        </div>
-
-        <div class="form-group">
-          <label class="checkbox-inline">
-              Dolazak kod  profesora
-              <input type="checkbox" name="" formControlName="professor_place">
-          </label>
+        <div class="flex space-around">
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="customCheck1" formControlName="user_place">
+            <label class="custom-control-label" for="customCheck1">Dolazak kod ucenika</label>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="customCheck2" formControlName="professor_place">
+            <label class="custom-control-label" for="customCheck2">Dolazak kod profesora</label>
+          </div>
         </div>
 
         <hr>
@@ -96,20 +93,21 @@
           <label for="">Broj Studenata</label>
         </div>
 
-        <div formArrayName="prices" *ngFor="let price of offerForm.get('prices').controls; let i = index;">
-          <div class="flex space-around" [formGroupName]="i">
-            <div class="form-group">
-              <input type="text" class="form-control" formControlName="price">
+          <div formArrayName="prices">
+            <div class="flex space-around" formGroupName="{{i}}" *ngFor="let pricing of offerForm.controls.prices.controls; let i = index;">
+              <div class="form-group">
+                <input type="text" class="form-control" formControlName="price">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" formControlName="student_count">
+              </div>
+              <button [disabled]="i === 0" class="btn btn-primary btn-small" (click)="removePrice(i)" name="button">Izbrisi</button>
             </div>
-            <div class="form-group">
-              <input type="text" class="form-control" formControlName="student_count">
-            </div>
-            <button [disabled]="i === 0" class="btn btn-primary btn-small" (click)="removePrice(i)" name="button">Izbrisi</button>
           </div>
-        </div>
+
         <button type="button" class="btn btn-outline-primary btn-sm" (click)="addPrice()">Dodaj Cenu</button>
         <hr>
-        <p>{{ offerForm.value | json }}</p>
+        <!-- <p>{{ offerForm.value | json }}</p> -->
         <button type="button" (click)="submitOffer()" class="btn btn-primary">Kreiraj Ponudu</button>
 
       </form>

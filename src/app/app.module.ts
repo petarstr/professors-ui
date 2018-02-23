@@ -22,6 +22,10 @@ import { SearchComponent } from './search/search.component';
 import { ProfLoginComponent } from './professors/prof-login/prof-login.component';
 import { AdminComponent } from './professors/admin/admin.component';
 import { FileUploadService } from './services/file-upload.service';
+import { OffersComponent } from './professors/offers/offers/offers.component';
+import { OfferCardComponent } from './professors/offers/offer-card/offer-card.component';
+import { AddSubjectModalComponent } from './professors/create-offer/add-subject-modal/add-subject-modal.component';
+import { EditOfferComponent } from './professors/edit-offer/edit-offer.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +38,11 @@ import { FileUploadService } from './services/file-upload.service';
     CreateOfferComponent,
     SearchComponent,
     ProfLoginComponent,
-    AdminComponent
+    AdminComponent,
+    OffersComponent,
+    OfferCardComponent,
+    AddSubjectModalComponent,
+    EditOfferComponent
   ],
   imports: [
     AppRoutingModule,

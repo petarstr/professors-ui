@@ -10,7 +10,7 @@ import { CreateOfferComponent } from './professors/create-offer/create-offer.com
 import { SearchComponent } from './search/search.component';
 import { ProfLoginComponent } from './professors/prof-login/prof-login.component';
 import { AdminComponent } from './professors/admin/admin.component';
-
+import { EditOfferComponent } from './professors/edit-offer/edit-offer.component';
 
 const appRoutes: Routes = [
   { path: '', component: SearchComponent },
@@ -25,6 +25,11 @@ const appRoutes: Routes = [
   {
     path: 'offers/new',
     component: CreateOfferComponent,
+    canActivate: [Angular2TokenService]
+  },
+  {
+    path: 'offers/:offerId/edit',
+    component: EditOfferComponent,
     canActivate: [Angular2TokenService]
   }
 ];

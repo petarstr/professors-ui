@@ -6,12 +6,19 @@ html {
 
 body {
   margin: 0;
-  overflow: hidden;
   min-height: 100%;
 }
 
 .flex {
   display: flex;
+}
+
+.space-around {
+  justify-content: space-around;
+}
+
+.space-between {
+  justify-content: space-between;
 }
 
 .vertical-align {
@@ -24,4 +31,12 @@ body {
 
 .pull-right {
   justify-content: flex-end;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.btn-small {
+  height: 15%;
 }
