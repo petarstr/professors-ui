@@ -1,0 +1,39 @@
+  <div class="container margin-top">
+    <div class="row" *ngIf="professor">
+      <div class="col-lg-3">
+        <img src="{{ professor.image.url }}" class="rounded" width="200" height="200" alt="user-image">
+      </div>
+      <div class="col-lg-6">
+        <table class="table">
+          <tr>
+            <th>Ime</th>
+            <td>{{professor.first_name + ' ' + professor.last_name}}</td>
+          </tr>
+          <tr>
+            <th>Mobilni Telefon</th>
+            <td>{{ professor.mobile_phone }}</td>
+          </tr>
+          <tr>
+            <th>Fiksni Telefon</th>
+            <td>{{ professor.phone }}</td>
+          </tr>
+          <tr>
+            <th>Adresa</th>
+            <td>{{ professor.street_name }}</td>
+          </tr>
+          <tr>
+            <th>Grad</th>
+            <td>{{ professor.city.name }}</td>
+          </tr>
+          <tr>
+            <th>Email</th>
+            <td>{{ professor.email }}</td>
+          </tr>
+          <tr>
+            <th>Facebook</th>
+            <td>{{ professor.facebook }}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>

@@ -10,7 +10,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { Angular2TokenService } from 'angular2-token';
 
-
 import { AppComponent } from './app.component';
 import { UserLoginComponent } from './login/user-login/user-login.component';
 import { UserRegistrationComponent } from './register/user-registration/user-registration.component';
@@ -26,6 +25,9 @@ import { OffersComponent } from './professors/offers/offers/offers.component';
 import { OfferCardComponent } from './professors/offers/offer-card/offer-card.component';
 import { AddSubjectModalComponent } from './professors/create-offer/add-subject-modal/add-subject-modal.component';
 import { EditOfferComponent } from './professors/edit-offer/edit-offer.component';
+import { NavComponent } from './nav/nav.component';
+import { SearchResultsComponent } from './search-results/search-results.component';
+import { PublicProfileComponent } from './professors/public-profile/public-profile.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,10 @@ import { EditOfferComponent } from './professors/edit-offer/edit-offer.component
     OffersComponent,
     OfferCardComponent,
     AddSubjectModalComponent,
-    EditOfferComponent
+    EditOfferComponent,
+    NavComponent,
+    SearchResultsComponent,
+    PublicProfileComponent
   ],
   imports: [
     AppRoutingModule,

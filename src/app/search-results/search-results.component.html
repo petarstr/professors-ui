@@ -1,0 +1,68 @@
+<div class="body">
+  <!-- <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2">
+        <ul class="list-group list-group-flush">
+            <a class="list-separator" *ngFor="let offer of offers">
+              <div class="card">
+                <div class="card-header">
+                  <div class="flex space-between">
+                    <div class="offer-title">
+                      {{ offer.title}}
+                    </div>
+                    <div class="">
+                      {{ offer.professor.first_name + ' ' + offer.professor.last_name }}
+                    </div>
+                  </div>
+                </div>
+                <div class="card-block">
+                  <div class="card-text flex horizontal-align">
+                    {{ offer.description }}
+                  </div>
+                </div>
+                <div class="card-footer flex space-between">
+                  <div class="prices">
+                    Cenovni rang: {{offer.prices[0].price | number}} - {{offer.prices[offer.prices.length - 1].price | number}}
+                  </div>
+                  <div class="sessions">
+                    Broj casova: {{offer.number_of_sessions}}
+                  </div>
+                </div>
+              </div>
+              <hr>
+            </a>
+        </ul>
+      </div>
+    </div>
+  </div> -->
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2">
+        <ul class="list-group list-group-flush">
+            <a class="list-separator" *ngFor="let offer of offers">
+              <div class="filter-bar">
+                <div class="offer-main">
+                  <div class="filter-title">
+                    <span class="">{{offer.title}}</span>
+                    <span class="">{{ offer.professor.first_name + ' ' + offer.professor.last_name }}</span>
+                  </div>
+                  <hr>
+                  <div class="filter-description">
+                    <span class="block">{{offer.description}}</span>
+                  </div>
+                </div>
+                <div class="filter-footer">
+                  <div class="footer-elements">
+                    <span class="">Broj Časova: {{offer.number_of_sessions}}</span>
+                    <span class="">Cenovni rang: {{offer.prices[0].price | number}} - {{offer.prices[offer.prices.length - 1].price | number}}</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

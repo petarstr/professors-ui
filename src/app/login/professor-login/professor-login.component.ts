@@ -32,7 +32,7 @@ export class ProfessorLoginComponent implements OnInit {
           console.log(localStorage.getItem('expiry'));
           console.log(localStorage.getItem('tokenType'));
           console.log(localStorage.getItem('uid'));
-          this.router.navigateByUrl('professors/pera');
+          this.router.navigateByUrl('professors/profile');
         },
         error => console.log(error)
     );

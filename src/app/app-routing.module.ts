@@ -11,6 +11,11 @@ import { SearchComponent } from './search/search.component';
 import { ProfLoginComponent } from './professors/prof-login/prof-login.component';
 import { AdminComponent } from './professors/admin/admin.component';
 import { EditOfferComponent } from './professors/edit-offer/edit-offer.component';
+import { NavComponent } from './nav/nav.component';
+import { ProfileComponent } from './professors/profile/profile.component';
+import { OffersComponent } from './professors/offers/offers/offers.component';
+import { SearchResultsComponent } from './search-results/search-results.component';
+import { PublicProfileComponent } from './professors/public-profile/public-profile.component';
 
 const appRoutes: Routes = [
   { path: '', component: SearchComponent },
@@ -18,8 +23,17 @@ const appRoutes: Routes = [
   { path: 'users/sign-up', component: UserRegistrationComponent },
   { path: 'professors/login', component: ProfLoginComponent },
   {
-    path: 'professors/:username',
-    component: AdminComponent,
+    path: 'professors/profile',
+    component: ProfileComponent,
+    canActivate: [Angular2TokenService]
+  },
+  {
+    path: 'professors/:professorId',
+    component: PublicProfileComponent
+  },
+  {
+    path: 'offers',
+    component: OffersComponent,
     canActivate: [Angular2TokenService]
   },
   {
@@ -31,6 +45,10 @@ const appRoutes: Routes = [
     path: 'offers/:offerId/edit',
     component: EditOfferComponent,
     canActivate: [Angular2TokenService]
+  },
+  {
+    path: 'search/:subjectId',
+    component: SearchResultsComponent
   }
 ];
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Angular2TokenService } from 'angular2-token';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -15,10 +16,16 @@ export class SearchComponent implements OnInit {
   selectedFaculty: any;
   selectedCourse: any;
   selectedSubject: any;
+  loggedIn: boolean = false;
 
-  constructor(private _tokenService: Angular2TokenService) { }
+  constructor(private _tokenService: Angular2TokenService, private router: Router) { }
 
   ngOnInit() {
+    this._tokenService.validateToken().subscribe(
+      (res) => {
+        this.loggedIn = true;
+      }
+    )
     this.getCities();
   }
 
@@ -58,7 +65,7 @@ export class SearchComponent implements OnInit {
   }
 
   search(){
-    console.log(this.selectedSubject);
+    this.router.navigateByUrl('search/' + this.selectedSubject.id);
   }
 
   clearAll(){

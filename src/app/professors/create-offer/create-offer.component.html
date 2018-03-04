@@ -1,118 +1,137 @@
-<div class="container">
-  <div class="row">
-    <div class="col-lg-6 offset-lg-3 offer">
+<app-nav>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 offset-lg-3 offer">
 
-      <ng-template #content let-c="close" let-d="dismiss">
-        <div class="modal-header">
-          <h4 class="modal-title">Modal title</h4>
-          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="form-group">
-            <label for="">Fakultet</label>
-            <select class="form-control" [(ngModel)]="newFaculty">
-              <option *ngFor="let faculty of faculties" [ngValue]="faculty" (click)="onFacultyChange(newFaculty.id)">{{faculty.name}}</option>
-            </select>
+        <ng-template #content let-c="close" let-d="dismiss">
+          <div class="modal-header">
+            <h4 class="modal-title">Modal title</h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
-          <div class="form-group">
-            <label for="">Smer</label>
-            <select class="form-control" [(ngModel)]="newCourse">
-              <option *ngFor="let course of courses" [ngValue]="course" (click)="onCourseChange(newCourse.id)">{{course.title}}</option>
-            </select>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="">Fakultet</label>
+              <select class="form-control" [(ngModel)]="newFaculty">
+                <option *ngFor="let faculty of faculties" [ngValue]="faculty" (click)="onFacultyChange(newFaculty.id)">{{faculty.name}}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="">Smer</label>
+              <select class="form-control" [(ngModel)]="newCourse">
+                <option *ngFor="let course of courses" [ngValue]="course" (click)="onCourseChange(newCourse.id)">{{course.title}}</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="">Predmet: </label>
+              <select class="form-control" [(ngModel)]="newSubject">
+                <option *ngFor="let sub of subjectsRes" [ngValue]="sub">{{ sub.title }}</option>
+              </select>
+            </div>
           </div>
-
-          <div class="form-group">
-            <label for="">Predmet: </label>
-            <select class="form-control" [(ngModel)]="newSubject">
-              <option *ngFor="let sub of subjectsRes" [ngValue]="sub">{{ sub.title }}</option>
-            </select>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="addSubject()">Add</button>
+            <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
           </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-dark" (click)="addSubject()">Add</button>
-          <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
-        </div>
-      </ng-template>
+        </ng-template>
 
-      <form class="" [formGroup]="offerForm" (ngSubmit)="onSubmit()" novalidate>
+        <form class="" [formGroup]="offerForm" (ngSubmit)="onSubmit()" novalidate>
 
-        <hr>
-        <div class="row">
-            <div class="col-lg-6" *ngFor="let subject of offerForm.get('subjects').value; let i = index;">
-              <div class="">
-              <div class="card">
-                <div class="card-block">
-                  <h4 class="card-title">{{subject.title}}</h4>
-                  <h6 class="card-subtitle mb-2 text-muted">{{subject.faculty_title}}</h6>
-                  <h6 class="card-subtitle mb-2 text-muted">{{subject.course_title}}</h6>
-                  <!-- <p class="card-text">{{subject.course_title}}</p> -->
+          <hr>
+          <div class="row">
+              <div class="col-lg-6" *ngFor="let subject of offerForm.get('subjects').value; let i = index;">
+                <div class="">
+                <div class="card">
+                  <div class="card-block">
+                    <h4 class="card-title">{{subject.title}}</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">{{subject.faculty_title}}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">{{subject.course_title}}</h6>
+                    <!-- <p class="card-text">{{subject.course_title}}</p> -->
 
+                  </div>
+                  <div class="card-footer" (click)="removeSubject(i)">
+                    <span>Izbrisi</span>
+                  </div>
                 </div>
-                <div class="card-footer" (click)="removeSubject(i)">
-                  <span>Izbrisi</span>
-                </div>
+                <br>
               </div>
-              <br>
             </div>
           </div>
-        </div>
-        <button type="button" class="btn btn-outline-primary btn-sm" (click)="open(content)">Dodaj Predmet</button>
-        <hr>
+          <button type="button" class="btn btn-outline-primary btn-sm" (click)="open(content)">
+            Dodaj Predmet
+            <span class="button-add"><i class="fa fa-plus" aria-hidden="true"> </i></span>
+          </button>
+          <hr>
 
-        <div class="form-group">
-          <label for="">Naziv</label>
-          <input type="text" class="form-control" formControlName="title">
-        </div>
-
-        <div class="form-group">
-          <label for="">Opis</label>
-          <textarea class="form-control" formControlName="description"></textarea>
-        </div>
-
-        <div class="form-group">
-          <label for="">Broj Casova</label>
-          <input type="number" class="form-control" min="1" formControlName="number_of_sessions">
-        </div>
-
-        <div class="form-group">
-          <label class="checkbox-inline">
-              Dolazak kod  ucenika
-              <input type="checkbox" name="" formControlName="user_place">
-          </label>
-        </div>
-
-        <div class="form-group">
-          <label class="checkbox-inline">
-              Dolazak kod  profesora
-              <input type="checkbox" name="" formControlName="professor_place">
-          </label>
-        </div>
-
-        <hr>
-        <div class="flex space-around">
-          <label for="">Cena</label>
-          <label for="">Broj Studenata</label>
-        </div>
-
-        <div formArrayName="prices" *ngFor="let price of offerForm.get('prices').controls; let i = index;">
-          <div class="flex space-around" [formGroupName]="i">
-            <div class="form-group">
-              <input type="text" class="form-control" formControlName="price">
-            </div>
-            <div class="form-group">
-              <input type="text" class="form-control" formControlName="student_count">
-            </div>
-            <button [disabled]="i === 0" class="btn btn-primary btn-small" (click)="removePrice(i)" name="button">Izbrisi</button>
+          <div class="form-group">
+            <label for="">Naziv</label>
+            <input type="text" class="form-control" formControlName="title">
           </div>
-        </div>
-        <button type="button" class="btn btn-outline-primary btn-sm" (click)="addPrice()">Dodaj Cenu</button>
-        <hr>
-        <p>{{ offerForm.value | json }}</p>
-        <button type="button" (click)="submitOffer()" class="btn btn-primary">Kreiraj Ponudu</button>
 
-      </form>
+          <div class="form-group">
+            <label for="">Opis</label>
+            <textarea class="form-control" formControlName="description"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="">Broj Casova</label>
+            <input type="number" class="form-control" min="1" formControlName="number_of_sessions">
+          </div>
+
+          <!-- <div class="form-group">
+            <label class="checkbox-inline">
+                Dolazak kod  ucenika
+                <input type="checkbox" name="" formControlName="user_place">
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label class="checkbox-inline">
+                Dolazak kod  profesora
+                <input type="checkbox" name="" formControlName="professor_place">
+            </label>
+          </div> -->
+
+          <div class="flex space-around">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="customCheck1" formControlName="user_place">
+              <label class="custom-control-label" for="customCheck1">Dolazak kod ucenika</label>
+            </div>
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="customCheck2" formControlName="professor_place">
+              <label class="custom-control-label" for="customCheck2">Dolazak kod profesora</label>
+            </div>
+          </div>
+
+          <hr>
+          <div class="flex space-around">
+            <label for="">Cena</label>
+            <label for="">Broj Studenata</label>
+          </div>
+
+          <div formArrayName="prices" *ngFor="let price of offerForm.get('prices').controls; let i = index;">
+            <div class="flex space-around" [formGroupName]="i">
+              <div class="form-group">
+                <input type="text" class="form-control" formControlName="price">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" formControlName="student_count">
+              </div>
+              <button [disabled]="i === 0" class="btn btn-outline-primary btn-small" (click)="removePrice(i)" name="button">Izbrisi</button>
+            </div>
+          </div>
+          <button type="button" class="btn btn-outline-primary btn-sm" (click)="addPrice()">
+            Dodaj Cenu
+            <span class="button-add"><i class="fa fa-plus" aria-hidden="true"> </i></span>
+          </button>
+          <hr>
+          <!-- <p>{{ offerForm.value | json }}</p> -->
+          <button type="button" (click)="submitOffer()" class="btn btn-outline-primary">Kreiraj Ponudu</button>
+
+        </form>
+      </div>
     </div>
   </div>
-</div>
+</app-nav>

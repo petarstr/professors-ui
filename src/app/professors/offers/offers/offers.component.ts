@@ -31,4 +31,29 @@ export class OffersComponent implements OnInit {
     )
   }
 
+  changeOfferState(offerId, state){
+    var body = { 'active': !state }
+    this._tokenService.put('professors/' + this.currentProfessorId + '/offers/' + offerId, body).subscribe(
+      res => {
+        var obj = this.offers.find(function (offer) { return offer.id === offerId; });
+        obj.active = !state;
+      },
+      err => {
+        console.log(err);
+      }
+    )
+  }
+
+  removeOffer(offerId){
+    this._tokenService.delete('professor/offers/' + offerId).subscribe(
+      res => {
+        var obj = this.offers.find(function (offer) { return offer.id === offerId; });
+        this.offers.splice(this.offers.indexOf(obj, 1));
+      },
+      err => {
+        console.log(err);
+      }
+    )
+  }
+
 }

@@ -18,3 +18,23 @@
   cursor: pointer;
   text-align: center;
 }
+
+.card-footer:hover {
+  border-color: #424242;
+  background: #424242;
+  color: white;
+}
+
+button:disabled {
+  color: #424242;
+  cursor: not-allowed;
+}
+
+button:disabled:hover, button:disabled:active {
+  background: white !important;
+  color: #424242;
+}
+
+form {
+  margin-bottom: 20px;
+}

@@ -1,4 +1,5 @@
 @import "~@ng-select/ng-select/themes/default.theme.css";
+@import "./assets/buttons.css";
 
 html {
   height: 100%;
@@ -37,6 +38,19 @@ body {
   display: inline-block;
 }
 
+.block {
+  display: block;
+}
+
 .btn-small {
   height: 15%;
+}
+
+.form-control:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.no-wrap {
+  flex-wrap: nowrap;
 }

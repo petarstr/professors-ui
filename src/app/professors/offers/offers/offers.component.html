@@ -1,36 +1,48 @@
-
-<div class="offer-controls flex pull-right">
-  <a href="/offers/new" class="btn btn-primary">Napravi ponudu</a>
-</div>
-<div class="container">
-  <div class="row">
-    <div class="col-lg-10 offset-lg-1">
-      <ul class="list-group list-group-flush">
-          <a class="list-separator" *ngFor="let offer of offers">
-            <div class="card">
-              <div class="card-header">
-                <div class="clearfix">
-                  <div class="float-left">
-                    {{ offer.offer_title }}
+<app-nav>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2">
+        <ul class="list-group list-group-flush">
+            <a class="list-separator" *ngFor="let offer of offers">
+              <div class="card">
+                <div class="card-header">
+                  <div class="flex space-between">
+                    <div class="offer-title">
+                      {{ offer.title}}
+                    </div>
+                    <div class="offer-actions">
+                      <a class="btn btn-outline-info btn-sm" (click)="changeOfferState(offer.id, offer.active)">
+                        {{ offer.active ? 'Deaktiviraj' : 'Aktiviraj' }}
+                      </a>
+                      <a class="btn btn-outline-primary btn-sm" routerLink="/offers/{{offer.id}}/edit">Izmeni</a>
+                      <a class="btn btn-outline-warning btn-sm" (click)="removeOffer(offer.id)">Obrisi</a>
+                    </div>
                   </div>
-                  <div class="float-right">
-                    <a class="btn btn-primary btn-sm" routerLink="/my-offer/{{offer.offer_id}}">Pregledaj</a>
-                    <a class="btn btn-info btn-sm" routerLink="/offers/{{offer.id}}/edit">Izmeni</a>
-                    <a class="btn btn-danger btn-sm" (click)="onDelete(offer.offer_id)">Obrisi</a>
+                </div>
+                <div class="card-block">
+                  <div class="card-text flex horizontal-align">
+                    <div *ngFor="let subject of offer.subjects" class="card subcard">
+                      <div [ngClass]=" offer.active ? 'card-block subcard-block' : 'card-block subcard-block deactivated'">
+                        <span class="flex horizontal-align">{{subject.title}}</span>
+                        <span class="flex horizontal-align subtext">{{subject.course.title}}</span>
+                        <span class="flex horizontal-align subtext">{{subject.course.faculty.name}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer flex space-between">
+                  <div class="prices">
+                    Cenovni rang: {{offer.prices[0].price | number}} - {{offer.prices[offer.prices.length - 1].price | number}}
+                  </div>
+                  <div class="sessions">
+                    Broj casova: {{offer.number_of_sessions}}
                   </div>
                 </div>
               </div>
-              <div class="card-block">
-                <h6 class="card-title">
-                  {{ offer.title}}
-                </h6>
-                <div class="card-text">
-                {{ offer.description }}
-                </div>
-              </div>
-            </div>
-          </a>
-      </ul>
+              <hr>
+            </a>
+        </ul>
+      </div>
     </div>
   </div>
-</div>
+</app-nav>

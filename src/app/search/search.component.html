@@ -1,7 +1,9 @@
 <div class="background">
   <div class="roles flex pull-right">
-    <a class="student-space-right btn btn-primary" name="button">Student</a>
-    <a class="prof-space-right btn btn-primary" name="button" routerLink="professors/login">Profesor</a>
+    <!-- <a *ngIf="!loggedIn" class="student-space-right btn btn-primary" name="button">Student</a> -->
+    <a *ngIf="!loggedIn" class="prof-space-right btn btn-primary" name="button" routerLink="professors/login">Profesor</a>
+    <a *ngIf="loggedIn" class="prof-space-right btn btn-primary" name="button" routerLink="/professors/profile">Profil</a>
+
   </div>
   <div class="flex container">
     <div class="block">
