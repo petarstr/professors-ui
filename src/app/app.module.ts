@@ -28,6 +28,7 @@ import { EditOfferComponent } from './professors/edit-offer/edit-offer.component
 import { NavComponent } from './nav/nav.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { PublicProfileComponent } from './professors/public-profile/public-profile.component';
+import { SearchResultComponent } from './search-result/search-result.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { PublicProfileComponent } from './professors/public-profile/public-profi
     EditOfferComponent,
     NavComponent,
     SearchResultsComponent,
-    PublicProfileComponent
+    PublicProfileComponent,
+    SearchResultComponent
   ],
   imports: [
     AppRoutingModule,

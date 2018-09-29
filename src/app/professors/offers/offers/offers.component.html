@@ -4,38 +4,37 @@
       <div class="col-lg-8 offset-lg-2">
         <ul class="list-group list-group-flush">
             <a class="list-separator" *ngFor="let offer of offers">
-              <div class="card">
-                <div class="card-header">
-                  <div class="flex space-between">
-                    <div class="offer-title">
-                      {{ offer.title}}
-                    </div>
-                    <div class="offer-actions">
-                      <a class="btn btn-outline-info btn-sm" (click)="changeOfferState(offer.id, offer.active)">
-                        {{ offer.active ? 'Deaktiviraj' : 'Aktiviraj' }}
-                      </a>
-                      <a class="btn btn-outline-primary btn-sm" routerLink="/offers/{{offer.id}}/edit">Izmeni</a>
-                      <a class="btn btn-outline-warning btn-sm" (click)="removeOffer(offer.id)">Obrisi</a>
+              <div class="filter-bar">
+                <div class="offer-main">
+                  <div class="filter-title">
+                    <span class="">{{offer.title}}</span>
+                    <div ngbDropdown class="d-inline-block">
+                      <i class="fa fa-cog" ngbDropdownToggle></i>
+                      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                        <button class="dropdown-item" routerLink="/offers/{{offer.id}}">Pregledaj</button>
+                        <button class="dropdown-item" (click)="changeOfferState(offer.id, offer.active)">{{ offer.active ? 'Deaktiviraj' : 'Aktiviraj' }}</button>
+                        <button class="dropdown-item" routerLink="/offers/{{offer.id}}/edit">Izmeni</button>
+                        <button class="dropdown-item" (click)="removeOffer(offer.id)">Obrisi</button>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="card-block">
-                  <div class="card-text flex horizontal-align">
-                    <div *ngFor="let subject of offer.subjects" class="card subcard">
-                      <div [ngClass]=" offer.active ? 'card-block subcard-block' : 'card-block subcard-block deactivated'">
-                        <span class="flex horizontal-align">{{subject.title}}</span>
-                        <span class="flex horizontal-align subtext">{{subject.course.title}}</span>
-                        <span class="flex horizontal-align subtext">{{subject.course.faculty.name}}</span>
+                  <hr>
+                  <div class="filter-description">
+                    <div class="card-text flex horizontal-align">
+                      <div *ngFor="let subject of offer.subjects" class="card subcard">
+                        <div [ngClass]=" offer.active ? 'card-block subcard-block' : 'card-block subcard-block deactivated'">
+                          <span class="flex horizontal-align">{{subject.title}}</span>
+                          <span class="flex horizontal-align subtext">{{subject.course.title}}</span>
+                          <span class="flex horizontal-align subtext">{{subject.course.faculty.name}}</span>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="card-footer flex space-between">
-                  <div class="prices">
-                    Cenovni rang: {{offer.prices[0].price | number}} - {{offer.prices[offer.prices.length - 1].price | number}}
-                  </div>
-                  <div class="sessions">
-                    Broj casova: {{offer.number_of_sessions}}
+                <div class="filter-footer">
+                  <div class="footer-elements">
+                    <span class="">Broj Časova: {{offer.number_of_sessions}}</span>
+                    <span class="">Cenovni rang: {{offer.prices[0].price | number}} - {{offer.prices[offer.prices.length - 1].price | number}}</span>
                   </div>
                 </div>
               </div>

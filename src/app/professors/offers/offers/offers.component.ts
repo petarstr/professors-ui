@@ -23,10 +23,13 @@ export class OffersComponent implements OnInit {
   }
 
   getOffers(){
-    this._tokenService.get('professors/' + this.currentProfessorId + '/offers').subscribe(
+    this._tokenService.get('professor/offers').subscribe(
       res => {
         console.log(res.json());
         this.offers = res.json();
+      },
+      err => {
+        console.log(err);
       }
     )
   }
@@ -48,7 +51,7 @@ export class OffersComponent implements OnInit {
     this._tokenService.delete('professor/offers/' + offerId).subscribe(
       res => {
         var obj = this.offers.find(function (offer) { return offer.id === offerId; });
-        this.offers.splice(this.offers.indexOf(obj, 1));
+        this.offers.splice(this.offers.indexOf(obj), 1);
       },
       err => {
         console.log(err);

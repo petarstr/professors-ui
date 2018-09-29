@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Angular2TokenService } from 'angular2-token';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-offer',
@@ -29,7 +29,9 @@ export class EditOfferComponent implements OnInit {
   private sub: any;
   offer: any;
   loaded = false;
-  constructor(private fb: FormBuilder, private modalService: NgbModal, private _tokenService: Angular2TokenService, private route: ActivatedRoute) {
+  offerTypes: any;
+
+  constructor(private fb: FormBuilder, private modalService: NgbModal, private _tokenService: Angular2TokenService, private route: ActivatedRoute, private router: Router) {
     this.createForm();
   }
 
@@ -43,6 +45,7 @@ export class EditOfferComponent implements OnInit {
         this.professorCityId = this.currentUser.city_id;
         this.getOffer();
         this.getFaculties(this.professorCityId);
+        this.getOfferTypes();
       }
     )
   }
@@ -51,11 +54,21 @@ export class EditOfferComponent implements OnInit {
     this._tokenService.get('professor/offers/' + this.offerId).subscribe(
       (res) => {
         this.setFormData(res.json());
+        console.log(res.json());
       },
       (err) => {
         console.log(err)
       }
     )
+  }
+
+  getOfferTypes(){
+    this._tokenService.get('offer-types').subscribe(
+      (res) => {
+        this.offerTypes = res.json();
+      },
+      (err) => {
+      }
   }
 
   setFormData(data){
@@ -65,7 +78,8 @@ export class EditOfferComponent implements OnInit {
       description: data.description,
       number_of_sessions: data.number_of_sessions,
       user_place: data.user_place,
-      professor_place: data.professor_place
+      professor_place: data.professor_place,
+      offer_type_id: data.offer_type_id
     });
     this.setPrices(data);
     this.offerForm.setControl('subjects', this.fb.array(data.subjects));
@@ -114,6 +128,7 @@ export class EditOfferComponent implements OnInit {
       number_of_sessions: '',
       user_place: '',
       professor_place: '',
+      offer_type_id: '',
       prices: this.fb.array([this.createPrice()]),
       subjects: this.fb.array([])
     });
@@ -179,7 +194,7 @@ export class EditOfferComponent implements OnInit {
  submitOffer(){
    this._tokenService.put('professors/' + this.currentUser.id + '/offers/' + this.offerId, this.offerForm.value).subscribe(
      (res) => {
-       console.log('uspeh')
+       this.router.navigateByUrl('/offers');
      },
      (err) => {
        console.log(err)

@@ -13,14 +13,14 @@
           <div class="modal-body">
             <div class="form-group">
               <label for="">Fakultet</label>
-              <select class="form-control" [(ngModel)]="newFaculty">
-                <option *ngFor="let faculty of faculties" [ngValue]="faculty" (click)="onFacultyChange(newFaculty.id)">{{faculty.name}}</option>
+              <select class="form-control" [(ngModel)]="newFaculty" (change)="onFacultyChange(newFaculty.id)">
+                <option *ngFor="let faculty of faculties" [ngValue]="faculty">{{faculty.name}}</option>
               </select>
             </div>
             <div class="form-group">
               <label for="">Smer</label>
-              <select class="form-control" [(ngModel)]="newCourse">
-                <option *ngFor="let course of courses" [ngValue]="course" (click)="onCourseChange(newCourse.id)">{{course.title}}</option>
+              <select class="form-control" [(ngModel)]="newCourse" (change)="onCourseChange(newCourse.id)">
+                <option *ngFor="let course of courses" [ngValue]="course">{{course.title}}</option>
               </select>
             </div>
 
@@ -70,6 +70,13 @@
           <div class="form-group">
             <label for="">Opis</label>
             <textarea class="form-control" formControlName="description"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="">Tip Ponude</label>
+            <select class="form-control" formControlName="offer_type_id">
+              <option *ngFor="let offerType of offerTypes" [value]="offerType.id">{{offerType.offer_type}}</option>
+            </select>
           </div>
 
           <div class="form-group">

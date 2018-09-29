@@ -1,0 +1,83 @@
+<div class="body">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2">
+        <ul class="list-group list-group-flush">
+          <div *ngIf="offer" class="filter-bar">
+            <div class="offer-main">
+              <div class="filter-title">
+                <span class="">{{offer.title}}</span>
+              </div>
+              <hr>
+              <div class="filter-description">
+                <span class="block margin-bottom">{{offer.description}}</span>
+                <div class="row margin-top">
+                  <div class="col-md-6">
+                    <table class="table sessions">
+                      <tr>
+                        <td>Broj časova</td>
+                        <td style="width: 30%">{{offer.number_of_sessions}}</td>
+                      </tr>
+                    </table>
+                    <div class="prices">
+                      <table class="table table-hover table-sm">
+                          <th>Broj Učenika</th>
+                          <th>Cena</th>
+                          <tr *ngFor="let price of offer.prices">
+                            <td>{{price.student_count}}</td>
+                            <td>{{price.price}}</td>
+                          </tr>
+                      </table>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="prof">
+                      <table class="table table-hover table-sm">
+                        <th colspan="2">Profesor</th>
+                        <tbody>
+                          <tr>
+                            <td>Ime</td>
+                            <td>{{offer.professor.first_name}}</td>
+                          </tr>
+                          <tr>
+                            <td>Mobilni</td>
+                            <td>{{offer.professor.mobile_phone}}</td>
+                          </tr>
+                          <tr>
+                            <td>Fiksni</td>
+                            <td>{{offer.professor.phone}}</td>
+                          </tr>
+                          <tr>
+                            <td>Email</td>
+                            <td>{{offer.professor.email}}</td>
+                          </tr>
+                          <tr>
+                            <td>Facebook</td>
+                            <td>{{offer.professor.facebook}}</td>
+                          </tr>
+                          <tr>
+                            <td>Dolazak</td>
+                            <td>{{offer.user_place ? 'Da' : 'Ne'}}</td>
+                          </tr>
+                          <tr>
+                            <td>Adresa</td>
+                            <td>{{offer.professor.street_name}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="filter-footer">
+              <div class="footer-elements">
+                <!-- <span class="">Broj Časova: {{offer.number_of_sessions}}</span> -->
+              </div>
+            </div>
+          </div>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

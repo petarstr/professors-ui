@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Angular2TokenService } from 'angular2-token';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-offer',
@@ -24,8 +25,9 @@ export class CreateOfferComponent implements OnInit {
   newSubject: any;
   newFaculty: any;
   newCourse: any;
+  offerTypes: any;
 
-  constructor(private fb: FormBuilder, private modalService: NgbModal, private _tokenService: Angular2TokenService) {
+  constructor(private fb: FormBuilder, private modalService: NgbModal, private _tokenService: Angular2TokenService, private router: Router) {
     this.createForm();
   }
 
@@ -35,6 +37,7 @@ export class CreateOfferComponent implements OnInit {
         this.currentUser = this._tokenService.currentUserData
         this.professorCityId = this.currentUser.city_id;
         this.getFaculties(this.professorCityId);
+        this.getOfferTypes();
       }
     )
   }
@@ -49,8 +52,17 @@ export class CreateOfferComponent implements OnInit {
     )
   }
 
-  onFacultyChange(faculty_id){
-    this._tokenService.get('faculties/' + faculty_id + '/courses').subscribe(
+  getOfferTypes(){
+    this._tokenService.get('offer-types').subscribe(
+      (res) => {
+        this.offerTypes = res.json();
+      },
+      (err) => {
+      }
+    )}
+
+  onFacultyChange(){
+    this._tokenService.get('faculties/' + this.newFaculty.id + '/courses').subscribe(
       (res) => {
         this.courses = res.json();
       },
@@ -75,6 +87,7 @@ export class CreateOfferComponent implements OnInit {
       number_of_sessions: '',
       user_place: false,
       professor_place: true,
+      offer_type_id: '1',
       prices: this.fb.array([ this.createPrice() ]),
       subjects: this.fb.array([])
     });
@@ -136,7 +149,7 @@ export class CreateOfferComponent implements OnInit {
  submitOffer(){
    this._tokenService.post('professor/offers', this.offerForm.value).subscribe(
      (res) => {
-       console.log('uspeh')
+       this.router.navigateByUrl('/offers');
      },
      (err) => {
        console.log(err)

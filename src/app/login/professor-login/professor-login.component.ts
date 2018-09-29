@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Angular2TokenService } from 'angular2-token';
 import { Router } from '@angular/router';
 
@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 })
 export class ProfessorLoginComponent implements OnInit {
   loginForm: FormGroup;
+  formSubmitted = false;
+  loginError = false;
 
   constructor(private fb: FormBuilder, private _tokenService: Angular2TokenService, private router: Router) {
     this.createForm();
@@ -17,13 +19,19 @@ export class ProfessorLoginComponent implements OnInit {
 
   createForm(){
     this.loginForm = this.fb.group({
-      email: '',
-      password: '',
+      email: ['', Validators.required],
+      password: ['', Validators.required],
       userType: 'PROFESSOR'
     });
   }
 
   onSubmit(){
+    this.formSubmitted = true;
+    this.loginError = false;
+
+    if(!this.loginForm.valid) {
+      return;
+    }
     this._tokenService.signIn(this.loginForm.value).subscribe(
         res => {
           console.log(res);
@@ -34,7 +42,9 @@ export class ProfessorLoginComponent implements OnInit {
           console.log(localStorage.getItem('uid'));
           this.router.navigateByUrl('professors/profile');
         },
-        error => console.log(error)
+        error => {
+          this.loginError = true;
+        }
     );
   }
 

@@ -15,6 +15,7 @@ import { NavComponent } from './nav/nav.component';
 import { ProfileComponent } from './professors/profile/profile.component';
 import { OffersComponent } from './professors/offers/offers/offers.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
+import { SearchResultComponent } from './search-result/search-result.component';
 import { PublicProfileComponent } from './professors/public-profile/public-profile.component';
 
 const appRoutes: Routes = [
@@ -49,6 +50,10 @@ const appRoutes: Routes = [
   {
     path: 'search/:subjectId',
     component: SearchResultsComponent
+  },
+  {
+    path: 'offers/:offerId',
+    component: SearchResultComponent
   }
 ];
 
