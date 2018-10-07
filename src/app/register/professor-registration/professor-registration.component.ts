@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Angular2TokenService } from 'angular2-token';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-professor-registration',

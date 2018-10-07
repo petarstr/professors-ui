@@ -69,7 +69,7 @@ export class EditOfferComponent implements OnInit {
       },
       (err) => {
       }
-  }
+  )}
 
   setFormData(data){
     this.offerForm.patchValue({

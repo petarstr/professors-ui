@@ -81,7 +81,7 @@ hr {
 }
 
 .sessions {
-  border-bottom: 1px solid #dee2e6;
+  border-bottom: 0px solid #dee2e6;
 }
 
 .sessions td {
@@ -99,4 +99,21 @@ hr {
 
 th {
   font-weight: normal;
+}
+
+.prof {
+  margin-top: 50px;
+}
+
+.prof th {
+  border-top: none;
+  text-align: center;
+}
+
+.prices {
+  margin-top: 50px;
+}
+
+.prices th {
+  border-top: none;
 }

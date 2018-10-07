@@ -23,7 +23,7 @@ export class OffersComponent implements OnInit {
   }
 
   getOffers(){
-    this._tokenService.get('professor/offers').subscribe(
+    this._tokenService.get('/professors/' + this.currentProfessorId + '/offers').subscribe(
       res => {
         console.log(res.json());
         this.offers = res.json();

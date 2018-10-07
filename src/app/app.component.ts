@@ -10,7 +10,7 @@ export class AppComponent {
 
   constructor(private _tokenService: Angular2TokenService) {
     this._tokenService.init({
-      apiPath: 'https://professors-be.herokuapp.com',
+      apiPath: 'http://localhost:3000/',
       signInPath: 'sign_in',
       signOutPath: 'sign_out',
       registerAccountPath: '',
@@ -23,3 +23,4 @@ export class AppComponent {
   }
 
 }
+//https://professors-be.herokuapp.com
